@@ -36,11 +36,13 @@
                 const cars = response.data;
                 const carsList = document.getElementById('cars-list');
                 carsList.innerHTML = '';
-
                 cars.forEach(car => {
-                    let li = document.createElement("li");
-                    li.innerHTML = `${car.make} ${car.model} (${car.year}) 
-                - <button onclick="deleteCar(${car.id})">Delete</button>`;
+                    const li = document.createElement('li');
+                    li.textContent = `${car.make} ${car.model} (${car.year})`;
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.onclick = () => deleteCar(car.id);
+                    li.appendChild(deleteButton);
                     carsList.appendChild(li);
                 });
             } catch (error) {
